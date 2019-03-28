@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Coroutine</string>
+    <string name="loading">Loading</string>
+    <string name="error_network">インターネット接続に失敗しました。</string>
+    <string name="error_server">サーバでエラーが発生しました。</string>
+    <string name="error_no_posts">記事がない</string>
+</resources>
