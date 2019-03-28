@@ -43,15 +43,19 @@ class MainActivity : AppCompatActivity() {
         //APIを非同期で呼ぶ
         //APIで取得したい項目は最初の記事にコメントした人すべて
 
+        // 2013年5月
         // 案1. コールバック地獄版
         // requestCallbackHell()
 
         // 案2. 1コールバック1メソッド
         // requestPostsAsync()
 
+        // 2014年11月
         // 案3. RXJava
         // requestRxJava()
 
+        // 2018年10月
+        // なお.netは2013年から使えた
         // 案4. Kotlin-coroutine
         requestKotlinCoroutines()
     }
@@ -185,7 +189,6 @@ class MainActivity : AppCompatActivity() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread()) // 下で実行するスレッド
             .subscribe({
-                printThread("subscribe");
                 it?.let { comments ->
                     val sb = StringBuilder()
                     for (comment in comments) {
@@ -216,10 +219,8 @@ class MainActivity : AppCompatActivity() {
 
 
         try {
-            printThread("1")
             val posts = service.listPosts().await()
             val comments = service.listComments(posts[0].id).await()
-            printThread("3")
 
             val sb = StringBuilder()
             for (comment in comments) {
